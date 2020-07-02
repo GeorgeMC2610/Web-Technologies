@@ -1,0 +1,169 @@
+/* Ορισμός των default στοιχείων στο body */
+body
+{
+    font-family: 'Arial';
+    background-color: #00304e;
+    color: white;
+}
+
+h1, h3
+{
+    text-align: center;
+}
+
+hr
+{
+    width: 90%;
+}
+
+#not_blue
+{
+    color: yellow;
+}
+
+/* Μορφοποίηση του πρώτου πίνακα */
+
+#table_title
+{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+table
+{
+    border: 1.5px solid black;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #b5b5b5;
+    color: black;
+    font-family: 'Segoe UI';
+    width: 18%;
+}
+
+td, li
+{
+    text-align: left;
+}
+
+ol
+{
+    text-align: left;
+}
+
+/* Ορισμός των κειμένων που σε μορφή άρθρων, π.χ. τον text του τίτλου και της παραγράφου κ.λπ. */
+div
+{
+    margin-left: 5%;
+}
+
+.title
+{
+    font-size: 38px;
+    font-family: 'Arial';
+    font-style: italic;
+    font-weight: bold;
+}
+
+#hr1
+{   
+    width: 595px;
+    float: left;
+    text-align: left;
+    margin-left: 5%;
+}
+
+#hr2
+{
+    width: 670px;
+    float: left;
+    text-align: left;
+    margin-left: 5%;
+}
+
+#hr3
+{
+    width: 405px;
+    float: left;
+    text-align: left;
+    margin-left: 5%
+}
+
+#hr4
+{
+    width: 370px;
+    float: left;
+    text-align: left;
+    margin-left: 5%;
+}
+
+#hr5
+{
+    width: 490px;
+    float: left;
+    text-align: left;
+    margin-left: 5%;
+}
+
+p
+{
+    font-family: 'Segoe UI';
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: justify;
+    font-size: 18px;
+}
+
+#outro
+{
+    text-align: center;
+    font-size: 8px;
+    font-family: Tahoma;
+}
+
+/* όλες οι εικόνες (με IDs) */
+
+#backarrow
+{
+    width: 82.5px;
+    height: 52px;
+    margin-left: 5%;
+    float: left;
+    position: absolute;
+}
+
+#lazaros_rennes_goal
+{
+    display: block;
+    float: right;
+    margin-right: 5%;
+    width: 480px;
+    height: 270px;
+}
+
+#lazaros_pao
+{
+    display: block;
+    float: right;
+    margin-right: 5%;
+    width: 420px;
+    height: 232px;
+}
+
+#lazaros_aek
+{
+    display: block;
+    float: right;
+    margin-right: 5%;
+    width: 420px;
+    height: 232px;
+}
+
+#lazaros_oly
+{
+    display: block;
+    float: right;
+    margin-right: 5%;
+    width: 420px;
+    height: 232px;
+}

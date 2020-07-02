@@ -1,0 +1,90 @@
+/* Ορισμός των default στοιχείων στο body */
+body
+{
+    font-family: 'Arial';
+    background-color: #00304e;
+    color: white;
+}
+
+h1, h3
+{
+    text-align: center;
+}
+
+hr
+{
+    width: 90%;
+}
+
+/* Ορισμός των κειμένων που σε μορφή άρθρων, π.χ. τον text του τίτλου και της παραγράφου κ.λπ. */
+div
+{
+    margin-left: 5%;
+}
+
+.introduction
+{
+    margin-left: 5%;
+    font-size: 20px;
+    font-family: 'Segoe UI';
+}
+
+#failed
+{
+    margin-left: 5%;
+    color: #ff4400;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.toPlayer
+{
+    font-size: 17px;
+    font-family: 'Times New Roman';
+}
+
+.toMe
+{
+    font-size: 17px;
+    font-family: 'Times New Roman';
+    margin-left: 37px;
+}
+
+
+#intro
+{
+    text-align: center;
+    font-size: 22px;
+    font-family: 'Microsoft YaHei';
+    font-weight: bold;
+    color: #ffebbf;
+}
+
+form
+{
+    margin-left: 5%;
+}
+
+textarea
+{
+    width: 500px;
+    height: 100px;
+}
+
+#outro
+{
+    text-align: center;
+    font-size: 8px;
+    font-family: Tahoma;
+}
+
+/* όλες οι εικόνες (με IDs) */
+
+#backarrow
+{
+    width: 82.5px;
+    height: 52px;
+    margin-left: 5%;
+    float: left;
+    position: absolute;
+}

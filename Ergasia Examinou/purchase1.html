@@ -1,0 +1,73 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Αγορά Αναμνηστικών</title>
+        <link rel="stylesheet" type="text/css" href="purchase1.css">                         
+        <map name="backarrow">
+            <area href="main.html" shape="rect" coords="0,0,165,104">
+        </map>
+
+        <!-- Κουμπί επιστροφής στην αρχική -->
+        <img src="backarrow.png" id="backarrow" alt="Πίσω στην Αρχική" usemap="#backarrow">
+    </head>
+    <body>
+        <h1>ΛΑΖΑΡΟΣ ΧΡΙΣΤΟΔΟΥΛΟΠΟΥΛΟΣ</h1> 
+        <h3>Αγορά Αναμνηστικών</h3>
+        <hr>
+
+        <br><br><br>
+
+        <form name="purchase1" method="POST" action="appendDatabase.php">
+            <a id="intro_gr">Εμφάνιση της Εθνικής Ελλάδος με το όνομα του Χριστοδουλόπουλου</a>
+            <a id="intro_oly">Εμφάνιση του Ολυμπιακού με το όνομα του Χριστοδουλόπουλου</a>
+            <br>
+            <img src="lazaros_greece.jpg" id="greece" alt="Μπλουζάκι της Εθνικής Ελλάδος">       
+            <img src="lazaros_olympiakos.jpg" id="olympiakos" alt="Μπλουζάκι του Ολυμπιακού">
+
+            <br><br>
+
+            <a class="quant_gre">Ποσότητα</a> <a class="quant_oly">Ποσότητα</a> <b class="price_gre">Τιμή: €44,90</b> <b class="price_oly">Τιμή: €38,90</b><br>
+            <input type="number" min="0" max="10" id="gre" value="0" name="gre" onclick="showPrice()" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}">
+            <input type="number" min="0" max="10" id="oly" value="0" name="oly" onclick="showPrice()" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}">
+        
+
+            <br><br><br>
+            <a id="buy">Γενικό Σύνολο Αγοράς: </a> <b id="count">€0.00</b><br>
+
+            <input type="button" value="Επόμενο" onclick="setParams()" id="proceed">
+        </form><br>
+
+        <b id="failed"> </b>
+
+        <script type="text/javascript">
+            function showPrice()
+            {
+                var gre = document.getElementById("gre").value;
+                var oly = document.getElementById("oly").value;
+
+                document.getElementById("count").innerHTML = "€" + (gre * 44.9 + oly * 38.9).toFixed(2);    
+            }
+
+            function setParams()
+            {
+                var gre = document.getElementById("gre").value;
+                var oly = document.getElementById("oly").value;
+
+                if (gre != 0 || oly != 0)
+                {
+                    localStorage.setItem("gre", document.getElementById("gre").value);
+                    localStorage.setItem("oly", document.getElementById("oly").value);
+                    window.location.href = "appendDatabase.php";
+                }
+                else
+                {
+                    document.getElementById("failed").innerHTML = "Δεν μπορείτε να προχωρήσετε στην αγορά, αν δεν αγοράσετε κάτι.";
+                }
+            }
+        </script>
+        <br><br><br>
+        <hr>
+        <div id="outro">Γιώργος Σεϊμένης, Π19204, Τεχνολογίες Διαδικτύου, Πανεπιστήμιο Πειραιώς 2019-2020</div>
+    </body>
+</html>

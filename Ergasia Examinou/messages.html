@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Επικοινωνία</title>
+        <link rel="stylesheet" type="text/css" href="messages.css">
+        <map name="backarrow">
+            <area href="main.html" shape="rect" coords="0,0,165,104">
+        </map>
+
+        <!-- Κουμπί επιστροφής στην αρχική -->
+        <img src="backarrow.png" id="backarrow" alt="Πίσω στην Αρχική" usemap="#backarrow">
+    </head>
+    <body>
+        <h1>ΛΑΖΑΡΟΣ ΧΡΙΣΤΟΔΟΥΛΟΠΟΥΛΟΣ</h1>
+        <h3>Επικοινωνία με τον παίκτη ή τον ιδρυτή της σελίδας</h3>
+        <hr>
+
+        <br><br>
+        <div id="intro">Αποστείλετε το μήνυμά σας στον Αθλητή, ή πείτε μας την άποψή σας για την σελίδα!</div>
+        <br><br><br><br>
+
+        <a class="introduction">Τα πεδία με την ένδειξη του αστερίσκου (*) είναι συμπληρωτέα</a>
+        <br><br>
+        <a id="failed"></a> <br><br>
+        
+        <form method="POST">
+            <a>Όνομα*</a> <br>
+            <input type="text"  placeholder="Το όνομά σας..."   id="firstname" name="firstname" size="25" maxlength="40">
+            <br><br>
+            <a>Επώνυμο*</a> <br>
+            <input type="text"  placeholder="Το επώνυμό σας..." id="lastname"  name="lastname"  size="25" maxlength="40">
+            <br><br>
+
+            <a>Ηλεκτρονικό Ταχυδρομείο*</a> <br>
+            <input type="email" placeholder="Το e-mail σας..."  id="email"     name="email"     size="25" maxlength="100">
+
+            <br><br>
+
+            <a class="toPlayer">Αποστολή στον παίκτη</a> <input type="radio" id="toPlayer"  name="receiver" checked>
+            
+
+            <a class="toMe">Αποστολή στον ιδιοκτήτη της σελίδας</a> <input type="radio" id="toMe" name="receiver">
+
+            <br><br>
+            <a>Το μήνυμά σας*</a> <br>
+            <textarea id="comment" name="comment"></textarea> <br><br>
+
+            <input type="button" value="Αποστολή" id="send"> <input type="reset" value="Εκκαθάριση">            
+        </form>
+
+        <script type="text/javascript">
+            function isEverythingOkay(f, l, e, c)
+            {
+                //χρησιμοποιώντας έναν μετρητή, ελέγχω πόσους επιτυχείς ελέγχους έχω
+                var validationCounter = 0;
+                if ((f != "") && (l != "") && (e != "") && (c != ""))
+                {
+                    validationCounter++;
+                }
+                else
+                {
+                    return "notFilled";
+                }
+
+                //κανονικοποιημένη έκφραση για το ονοματεπώνυμο
+                var nameRegEx = /[a-zA-Zα-ωΑ-Ω]/;
+                if (f.match(nameRegEx) && l.match(nameRegEx))
+                {
+                    validationCounter++;
+                }
+                else
+                {
+                    return "wrongNames";
+                }
+
+                //κανονικοποιημένη έκφραση για e-mail
+                var emailRegEx = /\S+@\S+\.\S+/;
+                if (e.match(emailRegEx))
+                {
+                    validationCounter++;
+                }
+                else
+                {
+                    return "wrongEmail";
+                }
+
+                if (validationCounter == 3)
+                {
+                    return true;
+                }
+                
+            }
+            
+            function click()
+            {
+                var firstname = document.getElementById("firstname").value;
+                var lastname  = document.getElementById("lastname").value;
+                var email     = document.getElementById("email").value;
+                var comment   = document.getElementById("comment").value;
+
+                switch(isEverythingOkay(firstname, lastname, email, comment))
+                {
+                    case "notFilled":
+                        document.getElementById("failed").innerHTML = "Υπάρχουν κενά πεδία.";
+                        break;
+                    case "wrongNames":
+                        document.getElementById("failed").innerHTML = "Μη επιθυμητοί χαρακτήρες στο όνομα/επώνυμο.";
+                        break;
+                    case "wrongEmail":
+                        document.getElementById("failed").innerHTML = "Λανθασμένη μορφή e-mail.";
+                        break;
+                    case true:
+                        //η περίπτωση που όλα τα πεδία είναι γεμάτα και με επιθυμητές προδιαγραφές
+                        document.getElementById("failed").innerHTML = "";
+                        if (document.getElementById("toPlayer").checked == true && confirm("Είστε σίγουρος ότι θέλετε να προχωρήσετε στην αποστολή του μηνύματος με τα προεπιλεγμένα στοιχεία; \n\nΣΗΜΕΙΩΣΗ: Το e-mail του παίκτη, για λόγους επίδειξης, δεν θα είναι το αληθινό του."))
+                        {
+                            //αποστολή στον παίκτη (ΨΕΥΤΙΚΟ E-MAIL)
+                            window.location.href = "mailto:lchristodoulopoulos@gmail.com?subject=Μήνυμα%20για%20τον%20παίκτη%20Λάζαρο%20Χριστοδουλόπουλο&body=Όνομα: " + firstname + "%0AΕπώνυμο: " + lastname + "%0AΣχόλιο: " + comment + "%0A%0AΛάβατε αυτό το μήνυμα μέσω του πλαισίου της Εργαστηριακής Εργασίας Εξαμήνου 2019-2020 του μαθήματος 'Τεχνολογίες Διαδικτύου' του Πανεπιστημίου Πειραιώς";
+                        }
+                        if (document.getElementById("toMe").checked == true && confirm("Είστε σίγουρος ότι θέλετε να προχωρήσετε στην αποστολή του μηνύματος με τα προεπιλεγμένα στοιχεία;"))
+                        {
+                            //αποστολή σε εμένα
+                            window.location.href = "mailto:giorgosseimenis@gmail.com?subject=Μήνυμα%20για%20την%20σελίδα&body=Όνομα: " + firstname + "%0AΕπώνυμο: " + lastname + "%0AΣχόλιο: " + comment + "";
+                        }
+                        break;
+                }
+            }
+            document.getElementById("send").onclick = function(){click()};
+        </script>
+
+        <br><br><br>
+        <hr>
+        <div id="outro">Γιώργος Σεϊμένης, Π19204, Τεχνολογίες Διαδικτύου, Πανεπιστήμιο Πειραιώς 2019-2020</div>
+
+    </body>
+</html>

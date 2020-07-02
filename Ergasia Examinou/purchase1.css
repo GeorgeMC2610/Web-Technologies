@@ -1,0 +1,131 @@
+/* Ορισμός των default στοιχείων στο body */
+body
+{
+    font-family: 'Arial';
+    background-color: #00304e;
+    color: white;
+}
+
+h1, h3
+{
+    text-align: center;
+}
+
+hr
+{
+    width: 90%;
+}
+
+#gre
+{
+    margin-left: 15%;
+}
+
+#oly
+{
+    float: right;
+    margin-right: 15%;
+}
+
+#proceed
+{
+    margin-left: 5%;
+}
+
+/* Ορισμός των κειμένων που σε μορφή άρθρων, π.χ. τον text του τίτλου και της παραγράφου κ.λπ. */
+a
+{
+    margin-left: 5%;
+}
+
+#intro_gr
+{
+    font-size: 10px;
+    font-family: Verdana;
+    margin-left: 10%;
+    text-align: center;
+}
+
+#intro_oly
+{
+    font-size: 10px;
+    font-family: Verdana;
+    margin-right: 12%;
+    text-align: center;
+    float: right;
+}
+
+.quant_gre
+{
+    font-size: 14px;
+    margin-left: 15%;
+}
+
+.price_gre
+{
+    margin-left: 2%;
+    font-family: Tahoma;
+}
+
+.price_oly
+{
+    margin-right: 0%;
+    float: right;
+    font-family: Tahoma;
+}
+
+.quant_oly
+{
+    font-size: 14px;
+    float: right;
+    margin-right: 15%;
+}
+
+#count
+{
+    font-size: 24px;
+}
+
+#failed
+{
+    color: red;
+    font-family: 'Verdana';
+    font-size: 22px;
+    margin-left: 5%;
+
+}
+
+#outro
+{
+    text-align: center;
+    font-size: 8px;
+    font-family: Tahoma;
+}
+
+/* όλες οι εικόνες (με IDs) */
+
+#olympiakos
+{
+    float: right;
+    margin-right: 15%;
+    width: 201.7px;
+    position: static;
+}
+
+#greece
+{
+    float: inline-start;
+    margin-left: 15%;
+    width: 205px;
+    position: static;
+}
+
+#backarrow
+{
+    width: 82.5px;
+    height: 52px;
+    margin-left: 5%;
+    float: left;
+    position: absolute;
+}
+

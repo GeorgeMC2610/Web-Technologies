@@ -1,0 +1,162 @@
+/* Ορισμός των default στοιχείων στο body */
+body
+{
+    font-family: 'Arial';
+    background-color: #00304e;
+    color: white;
+}
+
+h1, h3
+{
+    text-align: center;
+}
+
+hr
+{
+    width: 90%;
+}
+
+/* Μορφοποίηση του πρώτου πίνακα */
+.table_title
+{
+    font-family: 'Segoe UI';
+    font-size: 22px;
+    text-align: center;
+    margin-right: 5%;
+}
+
+#table_main
+{
+    margin-left: 5%;
+    border: 1.5px solid white;
+    background-color: #4e0000;
+    color: #dfdfdf;
+    font-family: 'Segoe UI';
+    font-size: 15px;
+    text-align: left;
+    width: 90%;
+}
+
+#td_main
+{
+    border: 1px solid white;
+    font-weight: bold;
+    text-align: center;
+    width: 1%;
+    height: 50px;
+}
+
+#table_career
+{
+    border: 1.5px solid white;
+    float: left;
+    margin-left: 5%;
+    background-color: #00709f;
+    color: #dfdfdf;
+    font-family: 'Segoe UI';
+}
+
+/* Ορισμός των κειμένων που σε μορφή άρθρων, π.χ. τον text του τίτλου και της παραγράφου κ.λπ. */
+div
+{
+    margin-left: 5%;
+}
+
+.title
+{
+    font-size: 38px;
+    font-family: 'Arial';
+    font-style: italic;
+    font-weight: bold;
+}
+
+#hr1
+{   
+    width: 625px;
+    float: left;
+    text-align: left;
+    margin-left: 5%;
+}
+
+#hr2
+{
+    width: 670px;
+    float: left;
+    text-align: left;
+    margin-left: 5%;
+}
+
+p
+{
+    font-family: 'Times New Roman';
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: left;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.p1
+{
+    margin-right: 760px;
+}
+
+#href
+{
+    color: yellow;
+}
+
+.goal_title
+{
+    font-size: 12px;
+    font-family: Verdana;
+}
+
+.aek_goal
+{
+    float: right;
+    margin-right: 15%;
+    font-size: 12px;
+    font-family: Verdana;
+}
+
+#outro
+{
+    text-align: center;
+    font-size: 8px;
+    font-family: Tahoma;
+}
+
+/* όλες οι εικόνες (με IDs) */
+
+#lithuania_goal
+{
+    width: 640px;
+    height: 360px;
+}
+
+#aek_goal
+{
+    float: right;
+    width: 640px;
+    height: 360px;
+    margin-right: 5%;
+}
+
+#backarrow
+{
+    width: 82.5px;
+    height: 52px;
+    margin-left: 5%;
+    float: left;
+    position: absolute;
+}
+
+#lazaros_rennes_goal
+{
+    display: block;
+    float: right;
+    margin-right: 5%;
+    width: 480px;
+    height: 270px;
+}

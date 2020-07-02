@@ -1,0 +1,57 @@
+/* Ορισμός των default στοιχείων στο body */
+body
+{
+    font-family: 'Arial';
+    background-color: #00304e;
+    color: white;
+}
+
+h1, h3
+{
+    text-align: center;
+}
+
+hr
+{
+    width: 90%;
+}
+
+form
+{
+    margin-left: 5%;
+}
+/* Ορισμός των κειμένων που σε μορφή άρθρων, π.χ. τον text του τίτλου και της παραγράφου κ.λπ. */
+
+#success
+{
+    margin-left: 5%;
+    color: green;
+    font-size: 22px;
+}
+
+#failed
+{
+    color: red;
+    margin-left: 5%;
+    font-size: 22px;
+    font-family: Verdana;
+}
+
+#outro
+{
+    text-align: center;
+    font-size: 8px;
+    font-family: Tahoma;
+}
+
+/* όλες οι εικόνες (με IDs) */
+
+#backarrow
+{
+    width: 82.5px;
+    height: 52px;
+    margin-left: 5%;
+    float: left;
+    position: absolute;
+}
+

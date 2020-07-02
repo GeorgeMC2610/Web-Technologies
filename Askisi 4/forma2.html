@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Αγορά Δικτύου</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="forma.css">
+    </head>
+    
+    <body>
+        <h1>ΠΟΔΟΣΦΑΙΡΙΚΗ ΕΝΗΜΕΡΩΣΗ</h1>
+        <h4>Φίλαθλοι του Ποδοσφαίρου σε μία ιστοσελίδα!</h2>
+        <hr>
+
+        <br>
+
+        <div class="intro">Αγοράστε τον ιστότοπο της σελίδας!</div>
+
+        <p class="failed" id="failed"></p>
+
+        <br><br>
+        <form>
+            <div>IPv4 Address *</div>
+            <input type="text" name="ipv4" id="ipv4" size="25" maxlength="15" placeholder="192.168.x.x">
+
+            <br><br>
+
+            <div>Subnet Mask *</div>
+            <input type="text" name="subnetmask" id="mask" size="25" maxlength="15" placeholder="255.255.255.0">
+
+            <br>
+            <!-- Κουμπιά αποστολής- εκκαθάρισης -->
+            <input type='button' value="Υπολογισμός" id="calculate"> <input type='reset' value="Εκκαθάριση">
+        </form>
+        
+        <p><strong>- Τα πεδία με την ένδειξη του αστερίσκου (*) είναι συμπληρωτέα.</strong></p>
+
+        <script>
+            function isEverythingFilledOut(ipv4, submask)
+            {
+                //έλεγχος για την πληρότητα των εισόδων.
+                if ((ipv4 == '') || (submask == ''))        {return false;}
+                else                                        {return true;}
+            }
+
+            function isIP_or_Mask(ip)
+            {
+                //έλεγχος για τον αν η είσοδος περιέχει μονάχα τελείες και αριθμούς.
+                var numbersRequired = ip.length;
+                var numbersAvailable = 0;
+                var acceptableNumbers = /[0123456789.]/;
+
+                for (var i in ip)
+                {
+                    if (ip[i].match(acceptableNumbers)) {numbersAvailable++;}
+                }
+
+                if (numbersAvailable == numbersRequired) {return true;}
+                else                                     {return false;}
+            }
+
+            function decimalToBinary(ip)
+            {
+                ip = ip.split(".");
+                for (var i in ip)
+                {
+                    ip[i] = parseInt(ip[i])
+                    ip[i] = (ip[i] >>> 0).toString(2);
+
+                    //δεν μπορούσα να βρω καλύτερο τρόπο να δεσμεύσω 8-bits...
+                    switch(ip[i].length)
+                    {
+                        case 0:
+                            ip[i] = "00000000";
+                            break;
+                        case 1:
+                            ip[i] = "0000000" + ip[i];
+                            break;
+                        case 2:
+                            ip[i] = "000000" + ip[i];
+                            break;
+                        case 3:
+                            ip[i] = "00000" + ip[i];
+                            break;
+                        case 4:
+                            ip[i] = "0000" + ip[i];
+                            break;
+                        case 5:
+                            ip[i] = "000" + ip[i];
+                            break;
+                        case 6:
+                            ip[i] = "00" + ip[i];
+                            break;
+                        case 7:
+                            ip[i] = "0" + ip[i];
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                var tempIp = ip[0] + "." + ip[1] + "." + ip[2] + "." + ip[3];
+                return tempIp;    
+            }
+
+            function correctIP(mask)
+            {
+                //θα πρέπει να εμπεριέχονται οπωσδήποτε τελείες και αριθμοί στην IP και στη μάσκα.
+                if (isIP_or_Mask(mask) == false) {return false;}
+
+                //αν υπάρχουν τελείες, χωρίζουμε το κάθε element με μία τελεία.
+                var ok = true;
+                mask = mask.split(".");
+                for (var i in mask)
+                {
+                    mask[i] = parseInt(mask[i]);
+                    if (typeof(mask[i]) == "string")
+                    {
+                        return false;
+                    }
+
+                    if (mask[i] > 255)
+                    {
+                        ok = false;       
+                    }
+                }
+                return ok;
+            }
+
+            //λογικό AND της IPV4 με τη μάσκα.
+            function ipAddres(ipv4, subnetMask)
+            {
+                ipv4 = ipv4.split(".");
+                subnetMask = subnetMask.split(".");
+                var tempIp = [];
+
+                for (var i in ipv4)
+                {
+                    ipv4[i] = parseInt(ipv4[i]);
+                    subnetMask[i] = parseInt(subnetMask[i]);
+                    tempIp.push(subnetMask[i] & ipv4[i]);
+                }
+
+                var finalIp = tempIp[0] + "." + tempIp[1] + "." + tempIp[2] + "." + tempIp[3];
+                return finalIp;
+            }
+
+            //Κλάσεις δικτύου
+            function NetworkClass(ipv4)
+            {
+                var netClass = "Μη έγκυρη κλάση.";
+                ipv4 = decimalToBinary(ipv4);
+                if (ipv4[0] == 0)                                                   {netClass = "Κλάση Α";}
+                if (ipv4[0] == 1 && ipv4[1] == 0)                                   {netClass = "Κλάση Β";}
+                if (ipv4[0] == 1 && ipv4[1] == 1 && ipv4[2] == 0)                   {netClass = "Κλάση Γ";}
+                if (ipv4[0] == 1 && ipv4[1] == 1 && ipv4[2] == 1)                   {netClass = "Κλάση Δ";}
+                if (ipv4[0] == 1 && ipv4[1] == 1 && ipv4[2] == 1 && ipv4[3] == 1)   {netClass = "Κλάση Ε";}
+                return netClass;
+            }
+
+            //Διαθέσιμες συσκευές
+            function NetworkDevices(mask)
+            {
+                mask = decimalToBinary(mask);
+                var countAce = 0;
+                for (var i in mask)
+                {
+                    if (mask[i] == 1) {countAce++ ;}
+                }
+                var devices = Math.pow(2,(32 - countAce));
+                return devices;
+            }
+
+            function maxIP(ip, mask)
+            {
+                ip = ip.split(".");
+                mask = mask.split(".");
+                var notMask;
+                var tempIp = [];
+
+                for (var i in mask)
+                {
+                    notMask = ip[i] | ~mask[i];
+                    notMask += 256;                         //if it's stupid and it works, then it's not stupid. Σημαντικότατη γραμμή, διότι χωρίς αυτή, οι τιμές βγαίνουν αρνητικές στην IP.
+                    tempIp.push(notMask);
+                }
+                var finalIp = tempIp[0] + "." + tempIp[1] + "." + tempIp[2] + "." + tempIp[3];
+                return finalIp;
+            }
+
+            //συνάρτηση για τα γεγονότα του click.
+            function click()
+            {
+                //εμβέλεια των μεταβλητών.
+                var ip = document.getElementById("ipv4").value;
+                var submask = document.getElementById("mask").value;
+
+                //επιστροφή true ή false από τις παραπάνω συναρτήσεις.
+                var isFilled = isEverythingFilledOut(ip, submask);
+                var okMask = correctIP(submask);
+                var okIP = correctIP(ip);
+
+                //έλεγχος για τον αν όλα τα πεδία είναι γεμάτα.
+                if (isFilled == false)
+                {
+                    document.getElementById("failed").innerHTML = "Θα πρέπει να συμπληρώσετε τα κενά πεδία.";
+                }
+                else    //αν είναι γεμάτα, τσεκάρουμε αν έχουν και τις κατάλληλες τιμές.
+                {
+                    if ((okMask == false) || (okIP == false))
+                    {
+                        document.getElementById("failed").innerHTML = "Λανθασμένες τιμές (δεν πρέπει να υπάρχει τιμή που να ξεπερνά το 255).";
+                    }
+                    else    //το σημείο στο οποίο όλα είναι οκ και προχωράμε στον υπολογισμό.
+                    {
+                        document.getElementById("failed").innerHTML = "";   //αφαίρεση του μηνύματος αποτυχίας
+                        alert("-- Αποτελέσματα υπολογισμού δικτύου --\n\n Διεύθυνση IP (σε δυαδική μορφή): \n" + decimalToBinary(ip) + "\n\nΗ διεύθυνση του δικτύου είναι: \n" + ipAddres(ip, submask) + "\n\nΑνήκει στην κλάση: \n" + NetworkClass(ip) + "\n\nΑριθμός δικτύων που υποστηρίζει: \n" + NetworkDevices(submask) + "\n\nΜεγαλύτερη διεύθυνση IP του συγκεκριμένου δικτύου: \n" + maxIP(ip, submask));
+                    }
+                }
+            }
+
+            document.getElementById("calculate").onclick = function(){click()};
+        </script>
+    </body>
+
+</html>

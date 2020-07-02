@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Προσθέστε Σχόλιο</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="forma.css" >
+    </head>
+    
+    <body>
+        <h1>ΠΟΔΟΣΦΑΙΡΙΚΗ ΕΝΗΜΕΡΩΣΗ</h1>
+        <h4>Φίλαθλοι του Ποδοσφαίρου σε μία ιστοσελίδα!</h2>
+        <hr>
+
+        <br>
+
+        <div class="intro">Στείλτε μας το σχόλιό σας για την ιστοσελίδα!</div>
+
+        <p id="failed" class="failed"></p>
+        <br>
+        <form>
+            <div>Όνομα *</div>
+            <input type="text" name="firstn" size="25" id="firstn" placeholder="π.χ. Γιάννης">
+
+            <br><br>
+
+            <div>Επίθετο *</div>
+            <input type="text" name="lastn" size="25" id="lastn" placeholder="π.χ. Παπαδόπουλος">
+
+            <br><br>
+
+            <div>Ηλεκτρονικό Ταχυδρομείο *</div>
+            <input type="email" name="email" size="25" id="email" placeholder="paradeigma@kapoiomail.gr">
+
+            <br><br>
+
+            <div>Το σχόλιό σας *</div>
+            <textarea name="comment" rows="5" id="comment" cols="75"></textarea>
+
+            <br>
+
+            <!-- Κουμπιά αποστολής- εκκαθάρισης -->
+            <input type='button' value="Αποστολή" id="send"> <input type='reset' value="Εκκαθάριση">
+        </form>
+        
+        <p><strong>- Τα πεδία με την ένδειξη του αστερίσκου (*) είναι συμπληρωτέα.</strong></p> <br>
+        <p id="failed" class="failed"></p>
+        <script>
+
+            // Η συνάρτηση για την 
+            function isEverythingFilledOut(f, l, e, c)
+            {
+                if ((f != '') && (l != '') && (e != '') && (c != ''))
+                {
+                    if (window.confirm("Θέλετε πραγματικά να αποστείλετε μήνυμα με αυτά τα στοιχεία; \n\n Όνομα: " + f + "\nΕπώνυμο: " + l + "\nE-mail: " + e + "\n\nΤο μήνυμά σας: " + c))
+                    {
+                        window.location.href = "mailto:giorgosseimenis@gmail.com?subject=Μήνυμα%20για%20την%20σελίδα&body=Ονομάζομαι%20" + f + "%20" + l + "%20και%20το%20μήνυμά%20μου%20είναι" + escape(":\n\n") + c;
+                    }
+                }
+                else
+                {
+                    document.getElementById("failed").innerHTML = "Συμπληρώστε τα κενά πεδία!";
+                }
+            }
+
+            function ClickAction()
+            {
+                isEverythingFilledOut(document.getElementById("firstn").value, document.getElementById("lastn").value, document.getElementById("email").value, document.getElementById("comment").value)
+            }
+
+            document.getElementById("send").onclick = function(){ClickAction()};
+
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,49 @@
+body
+{
+    font-family: 'Segoe UI';
+    background-color: #002500;
+    color: #ffffff;
+}
+
+h1
+{
+    font-family: 'Verdana';
+    text-align: center;
+    color: #eeeeee;
+}
+
+h4
+{
+    font-family: 'Verdana';
+    text-align: center;
+    color: #ddeedd;
+}
+
+hr
+{
+    width: 90%;
+}
+
+
+form
+{
+    margin-left: 5%;
+}
+
+p
+{
+    margin-left: 5%;
+}
+
+.intro
+{
+    margin-left: 5%;
+    font-size: 200%;
+    font-family: 'Verdana';
+}
+
+.failed
+{
+    font-size: 120%;
+    color: red;
+}
